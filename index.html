@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+<div class = "container">
+
+    <h1> Welcome </h1>
+    <form action = "{{url_for('login')}}" id = "auth-form" method="post"> 
+        <input type = "text" name = "username" placeholder = "Enter username">  
+        <input type = "password" name = "password" placeholder = "Password">  
+        <input type = "submit" value = "Login" onclick = "setFormAction('login')">
+        <input type = "button" value = "Register" onclick = "setFormAction('register')">
+    </form>
+    
+</div>
+
+<script> 
+    function setFormAction(action) {
+        var form = document.getElementById("auth-form");
+        if (action === 'login') {
+            form.action = "{{url_for('login')}}"
+            console.log("Working")
+            form.method = 'post';
+            form.submit();
+        } else if (action === 'register') {
+            form.action = "{{url_for('register')}}"
+            console.log("Working")
+            form.method = 'post';
+            form.submit();
+        }
+    }
+</script>
+
+{% endblock %}

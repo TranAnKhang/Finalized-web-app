@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class = "content">
+    <h1> Update your task baka</h1>
+    <p> Let's update your task here.Type new contents... </p>
+
+    <form actions = "{{url_for('update', id = task.id)}} " method = "POST">
+        <input type = "text" name = "content" id = "content" value = "" > 
+        <input type = "submit" value = "Update"> 
+    </form>
+</div>
+{% endblock %}

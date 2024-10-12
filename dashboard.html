@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{%block head%}
+
+<title> IDK </title>
+
+{% endblock%}
+
+{% block body %}
+<div class = "content">
+    <h1> Weclome {{username}} </h1>
+    {% if tasks | length < 1 %}
+    <h4>Start adding tasks you lazy monkey...</h4>
+    {%else%}
+        <table>
+            <tr>
+                <th> Task </th>
+                <th> Added </th>
+                <th> Actions </th>
+            </tr>
+
+            {% for task in tasks %}
+                <tr> 
+                    <td> {{task.content}} </td>
+                    <td> {{task.creation.strftime("%Y-%m-%d")}} </td>
+                    <td>
+                        <a href = "/delete/{{task.id}}"> Delete </a>
+                        <a href = "/update/{{task.id}}"> Update </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <form action = "/" method = "POST">
+
+        <input type = "text" name = "content" id = "content"> 
+        <input type = "submit" value = "Add Task" id = "add_btn">
+
+    </form>
+    <a href = "{{url_for('logout')}} " class = "btn btn_logout"> logout</a>
+
+</div>
+
+
+{%endblock%}
